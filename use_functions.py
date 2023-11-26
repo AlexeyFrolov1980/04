@@ -1,3 +1,10 @@
+#Счет
+account_sum=0.0
+
+#Список покупок
+purches=list([])
+
+
 """
 МОДУЛЬ 3
 Программа "Личный счет"
@@ -13,7 +20,17 @@
 при выборе этого пункта пользователю предлагается ввести сумму на сколько пополнить счет
 после того как пользователь вводит сумму она добавляется к счету
 снова попадаем в основное меню
+"""
 
+
+def put_to_account(sum, current_sum):
+    if sum>0:
+        return sum+current_sum
+    else:
+        print("Сумма должна быть больше 0")
+
+
+"""
 2. покупка
 при выборе этого пункта пользователю предлагается ввести сумму покупки
 если она больше количества денег на счете, то сообщаем что денег не хватает и переходим в основное меню
@@ -21,11 +38,37 @@
 снимаем деньги со счета
 сохраняем покупку в историю
 выходим в основное меню
+"""
 
+
+def purche(account_sum, purches):
+    sum=float(input('Введите сумму покупки:'))
+    if sum<=account_sum:
+        purche_name=input('Введите название покупки:')
+        account_sum -= sum
+
+        purches.append([purche_name,sum])
+    else:
+        print('денег не хватает')
+
+    return account_sum, purches
+
+
+"""
 3. история покупок
 выводим историю покупок пользователя (название и сумму)
 возвращаемся в основное меню
+"""
 
+
+def print_purches_history(purches):
+    for pu in purches:
+        print(pu)
+    return
+
+
+
+"""
 4. выход
 выход из программы
 
@@ -34,19 +77,29 @@
 Для реализации основного меню можно использовать пример ниже или написать свой
 """
 
+
+
+
 while True:
     print('1. пополнение счета')
     print('2. покупка')
     print('3. история покупок')
     print('4. выход')
 
-    choice = input('Выберите пункт меню')
+    print('')
+    print(f'Текущее состояние счта: {account_sum}')
+
+
+    choice = input('Выберите пункт меню: ')
     if choice == '1':
-        pass
+        sum=float(input('Введите сумму для пополнения: '))
+        account_sum=put_to_account(sum, account_sum)
+
     elif choice == '2':
-        pass
+        account_sum, purches=purche(account_sum, purches)
+
     elif choice == '3':
-        pass
+        print_purches_history(purches)
     elif choice == '4':
         break
     else:

@@ -6,6 +6,16 @@
 Задание: переписать код используя как минимум 1 функцию
 """
 
+
+def fright_answer(question, right_answer):
+    inp = input(question)
+    while inp != right_answer:
+        print("Не верно")
+        inp = input(question)
+    return
+
+
+'''
 year = input('Ввведите год рождения А.С.Пушкина:')
 while year != '1799':
     print("Не верно")
@@ -15,4 +25,11 @@ day = input('Ввведите день рождения Пушкин?')
 while day != '6':
     print("Не верно")
     day = input('В какой день июня родился Пушкин?')
+'''
+
+
+fright_answer('Ввведите год рождения А.С.Пушкина:', '1799')
+fright_answer('Ввведите день рождения Пушкин?:', '6')
+
+
 print('Верно')
